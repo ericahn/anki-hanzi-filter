@@ -1,1 +1,1 @@
-from . import hanzi-filter
+from . import hanzifilter
