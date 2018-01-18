@@ -94,8 +94,7 @@ class MyForm(QDialog):
         self.actiongrid.update_filtering(self.queries, create_filter(self.hanzi), self.action_field)
 
 
-
-action = QAction('Hello', mw)
+action = QAction('Hanzi Filter', mw)
 
 # set it to call testFunction when it's clicked
 action.triggered.connect(lambda: MyForm())
