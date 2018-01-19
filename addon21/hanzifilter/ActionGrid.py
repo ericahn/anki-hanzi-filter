@@ -3,16 +3,15 @@ from aqt.qt import *
 from .ActionBox import ActionBox
 
 
-class ActionGrid(QWidget):
+class ActionGrid(QGroupBox):
     def __init__(self, col):
-        QWidget.__init__(self)
+        QGroupBox.__init__(self, 'Actions')
 
         self.query = self.my_filter = self.field = None
         self.good_cids = []
         self.col = col
 
         layout = QGridLayout()
-        layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(3)
 
         layout.addWidget(QLabel('Seen'), 0, 1)

@@ -9,36 +9,11 @@ from aqt.utils import showInfo
 # import all of the Qt GUI library
 from aqt.qt import *
 
+from .utils import *
+
 from .FieldSelector import FieldSelector
 from .ActionGrid import ActionGrid
-
-
-def unique(l):
-    found = set()
-    for x in l:
-        if x not in found:
-            yield x
-            found.add(x)
-
-
-def is_hanzi(c):
-    return len(c) == 1 and 0x4e00 <= ord(c) <= 0x9fff
-
-
-def only_hanzi(l):
-    return list(filter(is_hanzi, unique(l)))
-
-
-def create_filter(hanzi):
-    hanzi = set(hanzi)
-
-    def my_filter(text):
-        for c in text:
-            if is_hanzi(c) and c not in hanzi:
-                return False
-        return True
-
-    return my_filter
+from .FieldBox import SourceBox, DestinationBox
 
 
 class MyForm(QDialog):
@@ -56,14 +31,14 @@ class MyForm(QDialog):
         self.action_field = None
 
         v1 = QVBoxLayout()
-        v1.addWidget(FieldSelector(self.col, self.source_field_selected))
-        v1.addWidget(FieldSelector(self.col, self.destination_field_selected))
+        v1.addWidget(SourceBox(self.col, self.source_field_selected))
+        v1.addWidget(DestinationBox(self.col, self.destination_field_selected))
         self.actiongrid = ActionGrid(self.col)
         v1.addWidget(self.actiongrid)
         v1.setContentsMargins(12, 12, 12, 12)
         self.setLayout(v1)
         self.setGeometry(300, 300, 290, 150)
-        self.setWindowTitle('Pizza title')
+        self.setWindowTitle('Hanzi Filter')
         self.show()
 
         # take the focus away from the first input area when starting up,

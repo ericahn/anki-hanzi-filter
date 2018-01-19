@@ -30,12 +30,12 @@ class FieldSelector(QWidget):
 
         # Initialize the drop down menus
         self.deck_combobox = QComboBox(self)
-        self.deck_combobox.addItems(self.deck_names)
+        self.deck_combobox.setStyleSheet("combobox-popup: 0;")
+        self.deck_combobox.setMinimumContentsLength(30)
         self.note_combobox = QComboBox(self)
         self.field_combobox = QComboBox(self)
 
-        # Limit the size of the deck drop down menu, which can be long enough to fill the screen
-        self.deck_combobox.setStyleSheet("combobox-popup: 0;")
+        self.deck_combobox.addItems(self.deck_names)
 
         # Set the event listeners
         self.deck_combobox.currentIndexChanged.connect(self.deck_selected)
