@@ -69,10 +69,16 @@ class MyForm(QDialog):
         self.actiongrid.update_filtering(self.queries, create_filter(self.hanzi), self.action_field)
 
 
+chinese_menu = None
+for action in mw.form.menuTools.actions():
+    menu = action.menu()
+    if menu is not None and action.text() == 'Chinese tools':
+        chinese_menu = menu
+if chinese_menu is None:
+    chinese_menu = QMenu('Chinese tools')
+    mw.form.menuTools.addSeparator()
+    mw.form.menuTools.addMenu(chinese_menu)
+
 action = QAction('Hanzi Filter', mw)
-
-# set it to call testFunction when it's clicked
 action.triggered.connect(MyForm)
-
-# and add it to the tools menu
-mw.form.menuTools.addAction(action)
+chinese_menu.addAction(action)
