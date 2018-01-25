@@ -27,7 +27,7 @@ class SourceBox(FieldBox):
         FieldBox.__init__(self, 'Source field', QLabel(), *args)
 
     def my_callback(self, deck_name, note_name, field):
-        cids = self.col.findCards('deck:"{}" note:"{}" is:review'.format(deck_name, note_name))
+        cids = self.col.findCards('deck:"{}" note:"{}" (is:review OR is:learn)'.format(deck_name, note_name))
         candidates = [self.col.getCard(cid).note()[field] for cid in cids]
         hanzi = only_hanzi(candidates)
         if len(hanzi) < 10:

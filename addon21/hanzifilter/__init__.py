@@ -17,13 +17,13 @@ from .FieldBox import SourceBox, DestinationBox
 
 
 class MyForm(QDialog):
-    def __init__(self, parent=None):
+    def __init__(self):
         # Here, you should call the inherited class' init, which is QDialog
-        QDialog.__init__(self, parent or mw, Qt.Window)
+        QDialog.__init__(self, mw, Qt.Window)
         mw.setupDialogGC(self)
 
-        self.mw = mw or aqt.mw
-        self.parent = parent or mw
+        self.mw = mw
+        self.parent = mw
         self.col = self.mw.col
 
         self.hanzi = None
@@ -72,7 +72,7 @@ class MyForm(QDialog):
 action = QAction('Hanzi Filter', mw)
 
 # set it to call testFunction when it's clicked
-action.triggered.connect(lambda: MyForm())
+action.triggered.connect(MyForm)
 
 # and add it to the tools menu
 mw.form.menuTools.addAction(action)
