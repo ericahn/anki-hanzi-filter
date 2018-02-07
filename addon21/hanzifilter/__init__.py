@@ -46,7 +46,7 @@ class MyForm(QDialog):
         self.setFocus()
 
     def source_field_selected(self, deck_name, note_name, field):
-        cids = self.col.findCards('deck:"{}" note:"{}" is:review'.format(deck_name, note_name))
+        cids = self.col.findCards('deck:"{}" note:"{}" (is:review OR is:learn)'.format(deck_name, note_name))
         candidates = [self.col.getCard(cid).note()[field] for cid in cids]
         self.hanzi = only_hanzi(candidates)
         self.update_actions()
