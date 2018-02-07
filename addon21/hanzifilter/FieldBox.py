@@ -30,10 +30,10 @@ class SourceBox(FieldBox):
         cids = self.col.findCards('deck:"{}" note:"{}" (is:review OR is:learn)'.format(deck_name, note_name))
         candidates = [self.col.getCard(cid).note()[field] for cid in cids]
         hanzi = only_hanzi(candidates)
-        if len(hanzi) < 10:
+        if len(hanzi) < 15:
             examples = ', '.join(hanzi)
         else:
-            examples = ', '.join(hanzi[:4]) + ', ..., ' + ', '.join(hanzi[-4:])
+            examples = ', '.join(hanzi[:6]) + ', ..., ' + ', '.join(hanzi[-6:])
         self.infowidget.setText('Found {} seen hanzi: {}'.format(len(hanzi), examples))
         self.callback(deck_name, note_name, field)
 
